@@ -1,4 +1,14 @@
-# Face Linker
+# FaceLinker
+
+![Node.js](https://img.shields.io/badge/Node.js-14.x-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Express](https://img.shields.io/badge/Express-4.x-lightgrey)
+![Knex](https://img.shields.io/badge/Knex.js-Supported-orange)
+![Docker](https://img.shields.io/badge/Docker-Supported-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13.x-blue)
+![API](https://img.shields.io/badge/API-RESTful-red)
+![Jest](https://img.shields.io/badge/Testing-Jest-brightgreen)
+![Swagger](https://img.shields.io/badge/Swagger-API%20Docs-yellow)
 
 ## Introduction
 
@@ -238,3 +248,11 @@ To ensure the system works as expected:
 ```bash
 npm test
 ```
+
+## Built By
+
+**Melih Can Aydın**
+Connect with me on:
+
+- [GitHub](https://github.com/melihcanaydin)
+- [LinkedIn](https://www.linkedin.com/in/melihcanaydin/)
