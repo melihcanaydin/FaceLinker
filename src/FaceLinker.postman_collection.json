@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "128d2400-f72f-41ad-9ffb-04a9debfbf24",
+		"name": "FaceLinker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7978033"
+	},
+	"item": [
+		{
+			"name": "CreateSession",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save SessionId Globally\", function () {",
+							"    const response = pm.response.json();",
+							"    console.log(\"Response:\", response);",
+							"    pm.expect(response).to.have.property(\"sessionId\");",
+							"    pm.globals.set(\"SessionId\", response.sessionId);",
+							"    console.log(\"Global SessionId saved:\", response.sessionId);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerId\": \"customer-123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UploadFiles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "images",
+							"type": "file",
+							"src": [
+								"/Users/melihcanaydin/Desktop/Face_Shape_1920x.jpg",
+								"/Users/melihcanaydin/Desktop/Face_Shape_1920x.jpg"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/sessions/{{SessionId}}/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sessions",
+						"{{SessionId}}",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SessionSummary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "images[]",
+							"type": "file",
+							"src": "/Users/melihcanaydin/Downloads/WhatsApp_Image_2023-12-21_at_01.24.29-removebg-preview.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/sessions/{{SessionId}}/summary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sessions",
+						"{{SessionId}}",
+						"summary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SELFIE Check",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/melihcanaydin/Desktop/Face_Shape_1920x.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/selfie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"selfie"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST -F \"file=@path/to/image.jpg\" http://localhost:8000/v1/selfie"
+			},
+			"response": []
+		}
+	]
+}
