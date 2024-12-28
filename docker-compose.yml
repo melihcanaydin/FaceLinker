@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run start
+    environment:
+      - PORT=3000
+      - UPLOAD_DIR=./uploads
+      - MAX_FILE_SIZE=5242880
+      - FACE_ENCODING_API_URL=http://face-encoding-app:8000/v1/selfie
+      - DB_HOST=database
+    depends_on:
+      - face-encoding-app
+      - database
+    networks:
+      - facelinker-network
+
+  face-encoding-app:
+    image: [facelinkerapp-docker-image]
+    container_name: face-encoding-app
+    ports:
+      - "8000:8000"
+    networks:
+      - facelinker-network
+
+  database:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: facelinker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - facelinker-network
+
+volumes:
+  postgres_data:
+
+networks:
+  facelinker-network:
